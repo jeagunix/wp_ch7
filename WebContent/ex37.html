@@ -16,20 +16,29 @@ var images = [
 	"펭귄:Penguins.jpg", 
 	"툴립:Tulips.jpg" ];
 
-$(function(){
+var changeImage = function(){
+	var result = Math.floor(Math.random()*images.length);
+	var imageInfos = images[result].split(":");
+	$("img").attr({
+		"src": "images/" + imageInfos[1],
+		"alt": imageInfos[0]
+	})
+}
 
-	$("button").click(function(){
-		// 랜덤 변수 
-		var result = Math.floor( Math.random() * (images.length-1)  ) + 1;
-	});
-	
+$(function(){
+	$("button").click(changeImage);
+	$("img")
+		.click(changeImage)	
+		.dblclick(function(){
+			console.log($(this).attr("alt"));
+		})
 });
 </script>
 </head>
 <body>
 	<button>화면을 변경</button>
 	<p>
-		<img src="images/Desert.jpg" alt="사막" />
+		<img src="images/Desert.jpg" alt="사막" style="width:400px" />
 	</p>
 </body>
 </html>
